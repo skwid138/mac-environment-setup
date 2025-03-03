@@ -18,7 +18,7 @@ else
 fi
 
 # Install CLI utilities
-echo "Installing fun CLI utilities..."
+echo "Installing CLI utilities..."
 if ! brew list fortune &>/dev/null; then
     brew install fortune
 else

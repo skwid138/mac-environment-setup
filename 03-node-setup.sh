@@ -5,6 +5,7 @@ echo "Setting up Node.js environment with NVM..."
 
 # Install NVM for Node version management
 if ! command -v nvm &> /dev/null; then
+    # Could use brew to install nvm
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 else
     echo "NVM is already installed."
