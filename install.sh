@@ -9,6 +9,7 @@ chmod +x 03-node-setup.sh
 chmod +x 04-python-setup.sh
 chmod +x 05-docker-setup.sh
 chmod +x 06-zsh-customization.sh
+chmod +x 07-common-apps.sh
 
 # Welcome message
 echo "====================================================="
@@ -73,6 +74,14 @@ read -p "Continue? (y/n) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     ./06-zsh-customization.sh
+fi
+
+echo
+echo "Ready to install common applications (Firefox, Chrome, Slack, Discord)?"
+read -p "Continue? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    ./07-common-apps.sh
 fi
 
 echo
