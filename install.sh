@@ -8,6 +8,7 @@ chmod +x 02-dev-tools.sh
 chmod +x 03-node-setup.sh
 chmod +x 04-python-setup.sh
 chmod +x 05-docker-setup.sh
+chmod +x 06-zsh-customization.sh
 
 # Welcome message
 echo "====================================================="
@@ -64,6 +65,14 @@ read -p "Continue? (y/n) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     ./05-docker-setup.sh
+fi
+
+echo
+echo "Ready to customize ZSH with Zplug and Spaceship prompt?"
+read -p "Continue? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    ./06-zsh-customization.sh
 fi
 
 echo
