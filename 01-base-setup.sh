@@ -19,7 +19,30 @@ fi
 
 # Install CLI utilities
 echo "Installing fun CLI utilities..."
-brew install fortune cowsay lolcat tmux
+if ! brew list fortune &>/dev/null; then
+    brew install fortune
+else
+    echo "fortune is already installed."
+fi
+
+if ! brew list cowsay &>/dev/null; then
+    brew install cowsay
+else
+    echo "cowsay is already installed."
+fi
+
+if ! brew list lolcat &>/dev/null; then
+    brew install lolcat
+else
+    echo "lolcat is already installed."
+fi
+
+if ! brew list tmux &>/dev/null; then
+    brew install tmux
+else
+    echo "tmux is already installed."
+fi
+
 
 echo "Base setup complete!"
 

@@ -32,7 +32,8 @@ CONDA_PATH="$(brew --prefix)/Caskroom/miniconda/base"
 #echo "Created ML environment. Activate with: conda activate ml"
 
 # Add Conda configuration to conda.sh
-cat > ~/code/scripts/conda.sh << 'EOF'
+if [ ! -f ~/code/scripts/conda.sh ] || ! grep -q "Conda Configuration" ~/code/scripts/conda.sh; then
+    cat > ~/code/scripts/conda.sh << 'EOF'
 #!/bin/bash
 
 # >>> conda initialize >>>
@@ -50,6 +51,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 EOF
+else
+    echo "Conda configuration already exists."
+fi
 
 echo "Python environment setup with Conda complete!"
 
