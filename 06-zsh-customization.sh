@@ -68,6 +68,44 @@ else
     echo "init.sh already configured to source ZSH plugins"
 fi
 
+# Now install the plugins directly during setup
+echo "Installing Zplug plugins..."
+
+# Create a temporary script to install plugins
+cat > /tmp/install_zplug_plugins.zsh << 'EOF'
+#!/usr/bin/env zsh
+
+# Source Zplug
+source "/opt/homebrew/opt/zplug/init.zsh"
+
+# Define plugins (same as in zsh_plugins.sh)
+zplug "spaceship-prompt/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-autosuggestions"
+
+# Install plugins without prompting
+zplug install
+
+# Check if installation was successful
+if zplug check; then
+    echo "All plugins successfully installed!"
+    exit 0
+else
+    echo "Some plugins could not be installed. Please check manually."
+    exit 1
+fi
+EOF
+
+# Make the temporary script executable
+chmod +x /tmp/install_zplug_plugins.zsh
+
+# Run the temporary script with zsh
+echo "Running Zplug installation..."
+zsh /tmp/install_zplug_plugins.zsh
+
+# Clean up
+rm /tmp/install_zplug_plugins.zsh
+
 # Prompt for Ghostty configuration
 echo
 echo "Ghostty Configuration Recommendation:"
