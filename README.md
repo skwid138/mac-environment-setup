@@ -13,6 +13,7 @@ A collection of shell scripts to automate the setup of a macOS development envir
   - Python (via Miniconda)
   - Docker
   - ZSH customization with Zplug and Spaceship prompt
+  - Common applications (Firefox, Chrome, Slack, Discord)
 - **Application Removal**:
   - Safe removal of GarageBand, iMovie, and iWork suite
   - System cache cleanup
@@ -28,8 +29,8 @@ A collection of shell scripts to automate the setup of a macOS development envir
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/macos-setup.git
-   cd macos-setup
+   git clone https://github.com/skwid138/mac-environment-setup.git
+   cd mac-environment-setup
    ```
 
 2. Make the main scripts executable:
@@ -56,6 +57,7 @@ The `install.sh` script will guide you through the installation process, with pr
 5. **Python Environment**: Installs Miniconda for Python development
 6. **Docker**: Installs Docker Desktop
 7. **ZSH Customization**: Sets up Zplug with Spaceship prompt and useful plugins
+8. **Common Applications**: Installs Firefox, Chrome, Slack, and Discord
 
 Each section can be installed independently by running the corresponding script directly:
 
@@ -67,6 +69,7 @@ Each section can be installed independently by running the corresponding script 
 ./04-python-setup.sh
 ./05-docker-setup.sh
 ./06-zsh-customization.sh
+./07-common-apps.sh
 ```
 
 ### Application Removal
@@ -94,6 +97,7 @@ Run the removal script:
 - **04-python-setup.sh**: Installs Miniconda and configures the environment for Python development.
 - **05-docker-setup.sh**: Installs Docker Desktop.
 - **06-zsh-customization.sh**: Installs and configures Zplug with plugins for ZSH enhancement.
+- **07-common-apps.sh**: Installs commonly used applications like Firefox, Chrome, Slack, and Discord.
 
 ### Removal Scripts
 
@@ -128,7 +132,9 @@ The scripts install and configure Ghostty terminal with Zplug and Spaceship prom
 
 ## Future Enhancements
 
-- Additional script for installing common applications (Chrome, Firefox, Slack, Discord, etc.)
+- Additional application installation options (e.g., productivity apps, media tools)
+- System preference configurations
+- Git configuration setup
 
 ## License
 
