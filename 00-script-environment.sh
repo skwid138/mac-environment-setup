@@ -5,7 +5,9 @@
 #!/bin/bash
 set -e
 
+echo "====================================================="
 echo "Setting up custom script environment..."
+echo "====================================================="
 
 # Create necessary directories
 mkdir -p ~/code/scripts
@@ -131,5 +133,6 @@ else
     echo "~/.zshrc already contains custom scripts sourcing"
 fi
 
+echo "====================================================="
 echo "Custom script environment setup complete!"
-
+echo "====================================================="

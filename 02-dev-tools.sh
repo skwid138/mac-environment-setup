@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "====================================================="
 echo "Installing development tools..."
+echo "====================================================="
 
 # Install VS Code if not already installed
 if ! brew list --cask visual-studio-code &>/dev/null; then
@@ -141,4 +143,6 @@ else
     echo "Google Cloud SDK is already installed."
 fi
 
+echo "====================================================="
 echo "Development tools installation complete!"
+echo "====================================================="

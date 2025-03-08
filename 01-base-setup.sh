@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "====================================================="
 echo "Setting up base development environment..."
+echo "====================================================="
 
 # Install Homebrew if not present
 if ! command -v brew &> /dev/null; then
@@ -43,6 +45,6 @@ else
     echo "tmux is already installed."
 fi
 
-
+echo "====================================================="
 echo "Base setup complete!"
-
+echo "====================================================="

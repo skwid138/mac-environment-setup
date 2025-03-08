@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "====================================================="
 echo "Setting up Python environment with Conda..."
+echo "====================================================="
 
 # Install Miniconda (smaller footprint than Anaconda)
 brew install --cask miniconda
@@ -55,5 +57,7 @@ else
     echo "Conda configuration already exists."
 fi
 
+echo "====================================================="
 echo "Python environment setup with Conda complete!"
+echo "====================================================="
 

@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
+echo "====================================================="
 echo "Setting up Node.js environment with NVM..."
+echo "====================================================="
 
 # Install NVM for Node version management
 if ! command -v nvm &> /dev/null; then
@@ -40,5 +42,7 @@ nvm alias default 'lts/*'
 echo "Installing minimal set of global npm packages..."
 npm install -g npm-check-updates
 
+echo "====================================================="
 echo "Node.js environment set up complete!"
+echo "====================================================="
 
