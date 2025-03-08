@@ -55,13 +55,13 @@ The `install.sh` script will guide you through the installation process, with pr
 
 1. **Script Environment**: Sets up a custom script environment with useful utilities
 2. **Base Setup**: Installs Homebrew and CLI utilities (fortune, cowsay, lolcat, tmux)
-3. **Development Tools**: Installs VS Code, Cursor IDE, Ghostty terminal, and other tools
+3. **Development Tools**: Installs VS Code, Cursor IDE, Ghostty terminal, ffmpeg, jq, and other tools
 4. **Node.js Environment**: Sets up NVM and installs the latest LTS version of Node.js
 5. **Python Environment**: Installs Miniconda for Python development
 6. **Docker**: Installs Docker Desktop
 7. **ZSH Customization**: Sets up Zplug with Spaceship prompt and useful plugins
 8. **Common Applications**: Installs Firefox, Chrome, Slack, Discord, Brave, and Tor
-9. **GNU Tools**: Installs GNU coreutils, grep, sed, awk, and findutils to replace macOS defaults
+9. **GNU Tools**: Installs GNU coreutils, grep, sed, awk, and findutils to replace macOS defaults as well as installs the latest bash
 10. **Window Management**: Installs Rectangle for window management
 11. **Media Utilities**: Sets up mov2gif for converting .mov files to .gif
 
@@ -101,13 +101,13 @@ Run the removal script:
 
 - **00-script-environment.sh**: Creates a modular script environment with separate files for variables, paths, aliases, and functions. Downloads custom scripts from GitHub gists.
 - **01-base-setup.sh**: Installs Homebrew and essential CLI utilities.
-- **02-dev-tools.sh**: Installs development tools including VS Code, Cursor IDE, Ghostty terminal, GitHub CLI, and Google Cloud SDK.
+- **02-dev-tools.sh**: Installs development tools including VS Code, Cursor IDE, Ghostty terminal, GitHub CLI, Google Cloud SDK, jq, and ffmpeg.
 - **03-node-setup.sh**: Sets up Node.js using NVM and installs essential global npm packages.
 - **04-python-setup.sh**: Installs Miniconda and configures the environment for Python development.
 - **05-docker-setup.sh**: Installs Docker Desktop.
 - **06-zsh-customization.sh**: Installs and configures Zplug with plugins for ZSH enhancement, as well as custom ZSH configurations.
 - **07-common-apps.sh**: Installs commonly used applications like Firefox, Chrome, Slack, Discord, Brave, and Tor.
-- **08-gnu-tools-setup.sh**: Installs GNU core utilities, grep, sed, awk, and findutils to replace macOS defaults.
+- **08-gnu-tools-setup.sh**: Installs GNU core utilities, grep, sed, awk, and findutils to replace macOS defaults as well as installs the latest bash.
 - **09-window-management-setup.sh**: Installs Rectangle for window management and tiling.
 - **10-media-utils-setup.sh**: Downloads and sets up mov2gif utility from GitHub gist.
 
