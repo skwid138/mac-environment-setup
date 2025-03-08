@@ -66,6 +66,12 @@ install_app_with_brew "Firefox" "firefox" "Mozilla Firefox"
 # Google Chrome
 install_app_with_brew "Google Chrome" "google-chrome" "Google Chrome"
 
+# Brave Browser
+install_app_with_brew "Brave Browser" "brave-browser" "Brave Browser"
+
+# Tor Browser
+install_app_with_brew "Tor Browser" "tor-browser" "Tor Browser"
+
 # Communication Tools
 echo "====================================================="
 echo "Communication Tools"
