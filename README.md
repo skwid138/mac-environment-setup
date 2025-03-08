@@ -13,8 +13,7 @@ A collection of shell scripts to automate the setup of a macOS development envir
   - Python (via Miniconda)
   - Docker
   - ZSH customization with Zplug and Spaceship prompt
-  - Common applications (Firefox, Chrome, Slack, Discord)
-  - Additional browsers (Brave, Tor)
+  - Common applications (Firefox, Chrome, Slack, Discord, Brave, Tor)
   - GNU command line tools (replacing macOS defaults)
   - Window management (Rectangle)
   - Media conversion utilities (mov2gif)
@@ -61,7 +60,7 @@ The `install.sh` script will guide you through the installation process, with pr
 5. **Python Environment**: Installs Miniconda for Python development
 6. **Docker**: Installs Docker Desktop
 7. **ZSH Customization**: Sets up Zplug with Spaceship prompt and useful plugins
-8. **Common Applications**: Installs Firefox, Chrome, Slack, and Discord
+8. **Common Applications**: Installs Firefox, Chrome, Slack, Discord, Brave, and Tor
 9. **GNU Tools**: Installs GNU coreutils, grep, sed, awk, and findutils to replace macOS defaults
 10. **Window Management**: Installs Rectangle for window management
 11. **Media Utilities**: Sets up mov2gif for converting .mov files to .gif
