@@ -10,6 +10,10 @@ chmod +x 04-python-setup.sh
 chmod +x 05-docker-setup.sh
 chmod +x 06-zsh-customization.sh
 chmod +x 07-common-apps.sh
+chmod +x 08-gnu-tools-setup.sh
+chmod +x 09-window-management-setup.sh
+chmod +x 10-additional-browsers.sh
+chmod +x 11-media-utils-setup.sh
 
 # Welcome message
 echo "====================================================="
@@ -77,11 +81,35 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 echo
-echo "Ready to install common applications (Firefox, Chrome, Slack, Discord)?"
+echo "Ready to install common applications (Firefox, Chrome, Slack, Discord, Brave, Tor)?"
 read -p "Continue? (y/n) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     ./07-common-apps.sh
+fi
+
+echo
+echo "Ready to set up GNU tools (coreutils, grep, sed, awk, findutils)?"
+read -p "Continue? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    ./08-gnu-tools-setup.sh
+fi
+
+echo
+echo "Ready to install window management tools (Rectangle)?"
+read -p "Continue? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    ./09-window-management-setup.sh
+fi
+
+echo
+echo "Ready to set up media conversion utilities (mov2gif)?"
+read -p "Continue? (y/n) " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    ./10-media-utils-setup.sh
 fi
 
 echo

@@ -14,6 +14,10 @@ A collection of shell scripts to automate the setup of a macOS development envir
   - Docker
   - ZSH customization with Zplug and Spaceship prompt
   - Common applications (Firefox, Chrome, Slack, Discord)
+  - Additional browsers (Brave, Tor)
+  - GNU command line tools (replacing macOS defaults)
+  - Window management (Rectangle)
+  - Media conversion utilities (mov2gif)
 - **Application Removal**:
   - Safe removal of GarageBand, iMovie, and iWork suite
   - System cache cleanup
@@ -58,6 +62,9 @@ The `install.sh` script will guide you through the installation process, with pr
 6. **Docker**: Installs Docker Desktop
 7. **ZSH Customization**: Sets up Zplug with Spaceship prompt and useful plugins
 8. **Common Applications**: Installs Firefox, Chrome, Slack, and Discord
+9. **GNU Tools**: Installs GNU coreutils, grep, sed, awk, and findutils to replace macOS defaults
+10. **Window Management**: Installs Rectangle for window management
+11. **Media Utilities**: Sets up mov2gif for converting .mov files to .gif
 
 Each section can be installed independently by running the corresponding script directly:
 
@@ -70,6 +77,9 @@ Each section can be installed independently by running the corresponding script 
 ./05-docker-setup.sh
 ./06-zsh-customization.sh
 ./07-common-apps.sh
+./08-gnu-tools-setup.sh
+./09-window-management-setup.sh
+./10-media-utils-setup.sh
 ```
 
 ### Application Removal
@@ -96,8 +106,11 @@ Run the removal script:
 - **03-node-setup.sh**: Sets up Node.js using NVM and installs essential global npm packages.
 - **04-python-setup.sh**: Installs Miniconda and configures the environment for Python development.
 - **05-docker-setup.sh**: Installs Docker Desktop.
-- **06-zsh-customization.sh**: Installs and configures Zplug with plugins for ZSH enhancement.
-- **07-common-apps.sh**: Installs commonly used applications like Firefox, Chrome, Slack, and Discord.
+- **06-zsh-customization.sh**: Installs and configures Zplug with plugins for ZSH enhancement, as well as custom ZSH configurations.
+- **07-common-apps.sh**: Installs commonly used applications like Firefox, Chrome, Slack, Discord, Brave, and Tor.
+- **08-gnu-tools-setup.sh**: Installs GNU core utilities, grep, sed, awk, and findutils to replace macOS defaults.
+- **09-window-management-setup.sh**: Installs Rectangle for window management and tiling.
+- **10-media-utils-setup.sh**: Downloads and sets up mov2gif utility from GitHub gist.
 
 ### Removal Scripts
 
@@ -119,6 +132,8 @@ The script environment creates the following structure in `~/code/scripts/`:
 - **aliases.sh**: Command aliases
 - **functions.sh**: Utility functions
 - **cowsay_fortune_lolcat.sh**: Fun terminal additions
+- **zsh_plugins.sh**: ZSH plugin configuration with Zplug
+- **zsh_config.sh**: ZSH custom configurations
 - **Tool-specific configs**: For NVM, Conda, GCloud, etc.
 
 You can modify these files to customize your environment.
@@ -129,6 +144,7 @@ The scripts install and configure Ghostty terminal with Zplug and Spaceship prom
 
 - **~/.ghostty/**: Ghostty terminal configuration
 - **~/code/scripts/zsh_plugins.sh**: ZSH plugins configuration
+- **~/code/scripts/zsh_config.sh**: ZSH keyboard shortcuts and completion settings
 
 ## Future Enhancements
 
@@ -149,3 +165,4 @@ The scripts install and configure Ghostty terminal with Zplug and Spaceship prom
 - [Zplug](https://github.com/zplug/zplug)
 - [Spaceship Prompt](https://github.com/spaceship-prompt/spaceship-prompt)
 - [Ghostty Terminal](https://ghostty.com/)
+- [Rectangle](https://rectangleapp.com/)
