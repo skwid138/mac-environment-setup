@@ -105,6 +105,14 @@ else
     echo "FFmpeg is already installed."
 fi
 
+# Install jq for JSON processing if not already installed
+if ! brew list jq &>/dev/null; then
+    echo "Installing jq..."
+    brew install jq
+else
+    echo "jq is already installed."
+fi
+
 # Install GitHub CLI if not already installed
 if ! brew list gh &>/dev/null; then
     echo "Installing GitHub CLI..."
