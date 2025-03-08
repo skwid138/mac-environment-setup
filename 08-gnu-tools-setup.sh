@@ -36,6 +36,94 @@ install_gnu_tool "gnu-sed" "GNU sed"
 install_gnu_tool "gawk" "GNU awk"
 install_gnu_tool "findutils" "GNU findutils (find, locate, etc.)"
 
+# Install upgraded Bash if not already installed
+echo "====================================================="
+echo "Installing upgraded Bash shell"
+echo "====================================================="
+
+if ! brew list bash &>/dev/null; then
+    echo "macOS comes with an older version of Bash (3.2.57). Would you like to install the latest Bash version?"
+    read -p "Install latest Bash? (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        brew install bash
+        
+        # Get the path to the new Bash
+        NEW_BASH_PATH="$(brew --prefix)/bin/bash"
+        
+        # Check if the new Bash is already in /etc/shells
+        if ! grep -q "$NEW_BASH_PATH" /etc/shells; then
+            echo "Adding new Bash to /etc/shells (may require password)..."
+            echo "$NEW_BASH_PATH" | sudo tee -a /etc/shells > /dev/null
+            
+            # Ask if user wants to change their default shell
+            echo
+            echo "Would you like to set the new Bash as your default shell?"
+            echo "Current bash version: $(bash --version | head -n 1)"
+            echo "New bash version:     $($NEW_BASH_PATH --version | head -n 1)"
+            read -p "Change default shell? (y/n) " -n 1 -r
+            echo
+            if [[ $REPLY =~ ^[Yy]$ ]]; then
+                chsh -s "$NEW_BASH_PATH" "$USER"
+                echo "Default shell changed to new Bash. Changes will take effect in new terminal sessions."
+            else
+                echo "Default shell not changed. You can still use the new Bash by running: $NEW_BASH_PATH"
+            fi
+        else
+            echo "New Bash is already in /etc/shells."
+            
+            # Check if it's already the default shell
+            if [[ "$SHELL" != "$NEW_BASH_PATH" ]]; then
+                echo "Would you like to set the new Bash as your default shell?"
+                echo "Current bash version: $(bash --version | head -n 1)"
+                echo "New bash version:     $($NEW_BASH_PATH --version | head -n 1)"
+                read -p "Change default shell? (y/n) " -n 1 -r
+                echo
+                if [[ $REPLY =~ ^[Yy]$ ]]; then
+                    chsh -s "$NEW_BASH_PATH" "$USER"
+                    echo "Default shell changed to new Bash. Changes will take effect in new terminal sessions."
+                else
+                    echo "Default shell not changed."
+                fi
+            else
+                echo "New Bash is already your default shell."
+            fi
+        fi
+        
+        echo "Bash installation and configuration complete."
+    else
+        echo "Skipping Bash installation."
+    fi
+else
+    echo "Upgraded Bash is already installed."
+    
+    # Get the path to the new Bash
+    NEW_BASH_PATH="$(brew --prefix)/bin/bash"
+    
+    # Check if it's already the default shell
+    if [[ "$SHELL" != "$NEW_BASH_PATH" ]]; then
+        echo "Would you like to set the Homebrew Bash as your default shell?"
+        echo "Current shell: $SHELL ($(bash --version | head -n 1))"
+        echo "Homebrew Bash: $NEW_BASH_PATH ($($NEW_BASH_PATH --version | head -n 1))"
+        read -p "Change default shell? (y/n) " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            # Check if the new Bash is already in /etc/shells
+            if ! grep -q "$NEW_BASH_PATH" /etc/shells; then
+                echo "Adding Homebrew Bash to /etc/shells (may require password)..."
+                echo "$NEW_BASH_PATH" | sudo tee -a /etc/shells > /dev/null
+            fi
+            
+            chsh -s "$NEW_BASH_PATH" "$USER"
+            echo "Default shell changed to Homebrew Bash. Changes will take effect in new terminal sessions."
+        else
+            echo "Default shell not changed."
+        fi
+    else
+        echo "Homebrew Bash is already your default shell."
+    fi
+fi
+
 # Update paths.sh to include GNU tools in PATH
 if [ -f ~/code/scripts/paths.sh ]; then
     echo "Checking paths.sh configuration..."
