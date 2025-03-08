@@ -54,10 +54,72 @@ if [ -f "/opt/homebrew/opt/zplug/init.zsh" ]; then
 fi
 EOF
 
-# Set executable permissions
+# Create/update zsh_config.sh with custom ZSH configurations if it doesn't exist or is empty
+if [ ! -f ~/code/scripts/zsh_config.sh ] || ! grep -q "Case-insensitive completion" ~/code/scripts/zsh_config.sh; then
+    echo "Creating ZSH custom configuration file..."
+    read -p "Would you like to set up ZSH keyboard shortcuts and completion configuration? (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        cat > ~/code/scripts/zsh_config.sh << 'EOF'
+#!/bin/bash
+
+# Case-insensitive completion
+# m:{a-z}={A-Z} - Match lowercase to uppercase
+# m:{A-Z}={a-z} - Match uppercase to lowercase
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Advanced configuration with partial-word completion
+# 'r:|=*' - Right side can match anything
+# 'l:|=*' - Left side can match anything
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=*'
+
+# Remind myself to use the native shortcuts
+beginning_of_line_with_reminder() {
+  zle beginning-of-line
+  zle -M "▶ TIP: You can also use Ctrl+A to move to beginning of line"
+  # Set up a one-time hook to clear the message on next keypress
+  zle -N self-insert clear_message_and_self_insert
+}
+zle -N beginning_of_line_with_reminder
+
+end_of_line_with_reminder() {
+  zle end-of-line
+  zle -M "▶ TIP: You can also use Ctrl+E to move to end of line"
+  # Set up a one-time hook to clear the message on next keypress
+  zle -N self-insert clear_message_and_self_insert
+}
+zle -N end_of_line_with_reminder
+
+# Clear the message on next keypress
+clear_message_and_self_insert() {
+  # Clear the message
+  zle -M ""
+  # Restore the original self-insert widget
+  zle -A .self-insert self-insert
+  # Process the current key press
+  zle .self-insert
+}
+zle -N clear_message_and_self_insert
+
+# Add fn+left/right shortcuts with reminder to use native shortcuts
+bindkey '^[[H' beginning_of_line_with_reminder  # fn+left arrow 
+bindkey '^[[F' end_of_line_with_reminder        # fn+right arrow
+EOF
+
+        # Set executable permissions
+        chmod 755 ~/code/scripts/zsh_config.sh
+        echo "ZSH custom configuration file created."
+    else
+        echo "Skipping ZSH keyboard shortcuts configuration."
+    fi
+else
+    echo "ZSH custom configuration file already exists."
+fi
+
+# Set executable permissions for zsh_plugins.sh
 chmod 755 ~/code/scripts/zsh_plugins.sh
 
-# Update init.sh to source the new file if it's not already included
+# Update init.sh to source the new files if they're not already included
 if ! grep -q "zsh_plugins.sh" ~/code/scripts/init.sh; then
     # Find the line with "Shell customizations" and add our new file after it
     sed -i '' '/## Shell customizations/a\
@@ -66,6 +128,20 @@ if ! grep -q "zsh_plugins.sh" ~/code/scripts/init.sh; then
     echo "Updated init.sh to source ZSH plugins"
 else
     echo "init.sh already configured to source ZSH plugins"
+fi
+
+# Update init.sh to source zsh_config.sh if it's not already included
+if ! grep -q "zsh_config.sh" ~/code/scripts/init.sh; then
+    echo "Updating init.sh to source zsh_config.sh..."
+    
+    # Find the line with "Shell customizations" and add our new file after it
+    sed -i '' '/## Shell customizations/a\
+[[ ! -f "$SCRIPTS_DIR/zsh_config.sh" ]] || source "$SCRIPTS_DIR/zsh_config.sh"
+' ~/code/scripts/init.sh
+    
+    echo "Updated init.sh to source ZSH custom configuration."
+else
+    echo "init.sh already configured to source ZSH custom configuration."
 fi
 
 # Now install the plugins directly during setup
